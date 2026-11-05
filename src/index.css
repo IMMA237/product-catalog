@@ -1,0 +1,19 @@
+/* Fonts from the CodersHub design system (must come first) */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@import 'tailwindcss';
+
+/* Design tokens. Brand colors are PLACEHOLDERS: replace with the real
+   CodersHub hex codes when you get them. */
+@theme {
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+
+  --color-brand: #f97316;      /* main accent (placeholder) */
+  --color-brand-dark: #0f172a; /* dark background/text (placeholder) */
+  --color-brand-light: #fff7ed; /* light background (placeholder) */
+}
+
+body {
+  font-family: var(--font-body);
+}
