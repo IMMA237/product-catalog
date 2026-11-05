@@ -4,6 +4,7 @@ import ProductListPage from './pages/ProductListPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import CartPage from './pages/CartPage';
 import NotFoundPage from './pages/NotFoundPage';
+import ErrorTestPage from './pages/ErrorTestPage';
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
           <Route path="/" element={<ProductListPage />} />
           <Route path="/products/:id" element={<ProductDetailPage />} />
           <Route path="/cart" element={<CartPage />} />
+          {/* Only exists while developing (npm run dev), never in a production build */}
+          {import.meta.env.DEV && <Route path="/error-test" element={<ErrorTestPage />} />}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
