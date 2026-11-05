@@ -1,16 +1,55 @@
-# React + Vite
+# CodersHub Product Catalog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + Vite product catalog built for the CodersHub Labs internship (React notes, Module 11).
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Product list loaded with `fetch()` through a reusable `useFetch` custom hook
+- Controlled search input that filters by name or category
+- Product detail pages with React Router and `useParams`
+- Global shopping cart with Zustand: add, remove, clear
+- Error Boundary that shows a friendly fallback instead of a blank page
+- Automated component tests with Vitest and React Testing Library
+- Tailwind CSS styling with Bebas Neue headings, Outfit body text, and brand colors
 
-## React Compiler
+## Tech stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+React, Vite, React Router, Zustand, react-error-boundary, Tailwind CSS, Vitest, React Testing Library
 
-## Expanding the ESLint configuration
+## Run locally
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Requires Node.js 20 or newer.
+
+```bash
+npm install
+npm run dev
+```
+
+Open http://localhost:5173
+
+## Scripts
+
+| Command | What it does |
+|---|---|
+| `npm run dev` | Start the development server |
+| `npm test` | Run the automated tests |
+| `npm run lint` | Check the code with ESLint |
+| `npm run build` | Create a production build in `dist/` |
+
+## Project structure
+
+```
+public/products.json      Mock product API (loaded with fetch)
+src/hooks/useFetch.js     Custom hook: data, loading, error
+src/store/cartStore.js    Zustand cart store
+src/pages/                List, detail, cart, and not-found pages
+src/components/           ProductCard, CartButton, ErrorFallback
+src/test/                 Vitest + React Testing Library tests
+```
+
+## Notes
+
+- Product data is mock data stored in `public/products.json`, so the app works offline. No API keys or `.env` file are needed.
+- Brand colors in `src/index.css` are placeholders and can be replaced with the official CodersHub colors.
+- The cart is kept in memory, so it resets on a full page refresh.
+- `/error-test` is a development-only route that crashes on purpose to demonstrate the Error Boundary.
