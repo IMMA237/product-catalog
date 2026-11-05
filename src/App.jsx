@@ -1,30 +1,30 @@
-import useFetch from './hooks/useFetch';
-import ProductCard from './components/ProductCard';
+import { Link, Route, Routes } from 'react-router-dom';
+import ProductListPage from './pages/ProductListPage';
+import ProductDetailPage from './pages/ProductDetailPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
-  const { data: products, loading, error } = useFetch('/products.json');
-
   return (
-    <main className="min-h-screen bg-brand-light p-6 md:p-10">
-      <h1 className="font-display text-5xl text-brand-dark md:text-6xl">CodersHub Product Catalog</h1>
+    <div className="min-h-screen bg-brand-light">
+      <header className="bg-brand-dark">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between p-4">
+          <Link to="/" className="font-display text-3xl text-white">
+            CodersHub <span className="text-brand">Store</span>
+          </Link>
+          <Link to="/" className="text-white hover:text-brand">
+            Products
+          </Link>
+        </nav>
+      </header>
 
-      {loading && <p className="mt-6 text-brand-dark">Loading products...</p>}
-
-      {error && (
-        <p role="alert" className="mt-6 text-red-600">
-          Could not load products: {error.message}
-        </p>
-      )}
-
-      {products && (
-        <section className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {products.map((product) => (
-            // Stable id as key, never the array index (React PDF, Module 2.2)
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </section>
-      )}
-    </main>
+      <main className="mx-auto max-w-6xl p-6 md:p-10">
+        <Routes>
+          <Route path="/" element={<ProductListPage />} />
+          <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
+    </div>
   );
 }
 
