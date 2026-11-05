@@ -1,19 +1,24 @@
 import { Link, Route, Routes } from 'react-router-dom';
+import CartButton from './components/CartButton';
 import ProductListPage from './pages/ProductListPage';
 import ProductDetailPage from './pages/ProductDetailPage';
+import CartPage from './pages/CartPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
     <div className="min-h-screen bg-brand-light">
       <header className="bg-brand-dark">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between p-4">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 p-4">
           <Link to="/" className="font-display text-3xl text-white">
             CodersHub <span className="text-brand">Store</span>
           </Link>
-          <Link to="/" className="text-white hover:text-brand">
-            Products
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link to="/" className="text-white hover:text-brand">
+              Products
+            </Link>
+            <CartButton />
+          </div>
         </nav>
       </header>
 
@@ -21,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ProductListPage />} />
           <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

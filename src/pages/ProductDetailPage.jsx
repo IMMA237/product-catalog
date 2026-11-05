@@ -1,13 +1,17 @@
 import { Link, useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
+import useCartStore from '../store/cartStore';
 import formatPrice from '../utils/formatPrice';
 
 export default function ProductDetailPage() {
-  // Reads :id from the URL, e.g. /products/2 -> "2" (Module 9.1)
   const { id } = useParams();
-
-  // Same fetch logic as the list page, reused through the custom hook
   const { data: products, loading, error } = useFetch('/products.json');
+
+  // Hooks must run on EVERY render, so they go BEFORE any early return (Module 4.1)
+  const addItem = useCartStore((state) => state.addItem);
+  const quantityInCart = useCartStore(
+    (state) => state.items.find((item) => item.id === Number(id))?.quantity ?? 0
+  );
 
   if (loading) return <p>Loading product...</p>;
 
@@ -19,7 +23,6 @@ export default function ProductDetailPage() {
     );
   }
 
-  // URL params are strings, product ids are numbers
   const product = products.find((p) => p.id === Number(id));
 
   if (!product) {
@@ -53,6 +56,20 @@ export default function ProductDetailPage() {
             {inStock ? 'In stock' : 'Sold out'}
           </p>
           <p className="mt-4 text-gray-700">{description}</p>
+
+          <button
+            type="button"
+            onClick={() => addItem(product)}
+            disabled={!inStock}
+            className="mt-6 rounded-lg bg-brand px-6 py-3 font-semibold text-white hover:opacity-90 disabled:cursor-not-allowed disabled:bg-gray-300"
+          >
+            {inStock ? 'Add to cart' : 'Sold out'}
+          </button>
+
+          {/* "> 0" avoids rendering a stray 0 on the page (Module 5.2 pitfall) */}
+          {quantityInCart > 0 && (
+            <p className="mt-2 text-sm text-green-700">In your cart: {quantityInCart}</p>
+          )}
         </div>
       </article>
     </div>
