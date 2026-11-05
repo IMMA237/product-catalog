@@ -1,0 +1,10 @@
+[
+  { "id": 1, "name": "CodersHub T-Shirt", "price": 5000, "category": "Clothing", "emoji": "👕", "inStock": true, "description": "Soft cotton t-shirt with the CodersHub logo." },
+  { "id": 2, "name": "Developer Sneakers", "price": 25000, "category": "Shoes", "emoji": "👟", "inStock": true, "description": "Comfortable sneakers for long coding sessions." },
+  { "id": 3, "name": "Snapback Cap", "price": 3000, "category": "Accessories", "emoji": "🧢", "inStock": true, "description": "Adjustable cap, one size fits all." },
+  { "id": 4, "name": "Laptop Backpack", "price": 18000, "category": "Accessories", "emoji": "🎒", "inStock": false, "description": "Water-resistant backpack that fits a 15-inch laptop." },
+  { "id": 5, "name": "Wireless Headphones", "price": 32000, "category": "Electronics", "emoji": "🎧", "inStock": true, "description": "Noise-cancelling headphones with 30-hour battery." },
+  { "id": 6, "name": "Coffee Mug", "price": 2500, "category": "Kitchen", "emoji": "☕", "inStock": true, "description": "Ceramic mug that says 'It works on my machine'." },
+  { "id": 7, "name": "Hoodie", "price": 15000, "category": "Clothing", "emoji": "🧥", "inStock": true, "description": "Warm hoodie for cold offices." },
+  { "id": 8, "name": "Mechanical Keyboard", "price": 45000, "category": "Electronics", "emoji": "⌨️", "inStock": false, "description": "Clicky keyboard with RGB lighting." }
+]
